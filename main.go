@@ -14,7 +14,7 @@ import (
 var argFrom string
 var argTo string
 var argPort int
-var argHttps bool
+var argHTTPS bool
 var argProtocol string
 
 func copyHeaders(dst *http.Header, src *http.Header) {
@@ -76,14 +76,14 @@ func init() {
 	flag.StringVar(&argFrom, "from", "", "source domain that proxy will work with")
 	flag.StringVar(&argTo, "to", "", "target domain that proxy will work with")
 	flag.IntVar(&argPort, "port", 8080, "port that proxy should use")
-	flag.BoolVar(&argHttps, "https", false, "is target https enabled")
+	flag.BoolVar(&argHTTPS, "https", false, "is target https enabled")
 	flag.Parse()
 
 	if argFrom == "" || argTo == "" {
 		log.Fatalf("from and to cant be empty")
 	}
 
-	if argHttps {
+	if argHTTPS {
 		argProtocol = "https"
 	} else {
 		argProtocol = "http"
